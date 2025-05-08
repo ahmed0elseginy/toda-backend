@@ -1,7 +1,7 @@
 package com.toda.todo.error.exception;
 
-import com.toda.user.error.exception.AppException;
-import com.toda.user.error.interfaces.Errors;
+
+import com.toda.todo.error.interfaces.Errors;
 import lombok.Getter;
 
 @Getter

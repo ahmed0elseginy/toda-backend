@@ -1,8 +1,9 @@
 @echo off
 
-:: Change directory to the location of the .bat file
-cd /d %~dp0
+:: Change directory to the project root where pom.xml is located
+cd /d C:\Users\HazeX\Documents\GitHub\Spring-Projects\Backend-Spring-Bootcamp\graduation-project\toda-backend\user-mgt
 
-CALL mvn process-sources -Pliquibase "-Dcurrent.environment=local"
+:: Run Maven without the liquibase profile
+CALL mvn process-sources "-Dcurrent.environment=local"
 
-pause 
+pause

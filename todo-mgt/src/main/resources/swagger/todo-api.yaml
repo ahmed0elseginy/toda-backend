@@ -2,121 +2,73 @@ openapi: 3.0.3
 
 info:
   version: "1.0"
-  title: "User Management Service"
+  title: "Todo List Service"
   contact:
     email: "ahmed0elseginy@gmail.com"
     name: "Ahmed El-Seginy"
 
 servers:
-  - url: http://localhost:8104/
+  - url: http://localhost:8102/
 
 tags:
-  - name: Auth
-  - name: Profile
-  - name: User
-  - name: Role
+  - name: Todo
 
 paths:
-  /auth/register:
+  /todos:
     post:
       tags:
-        - Auth
-      summary: Register User
-      operationId: registerUser
+        - Todo
+      summary: Create a new todo item
+      operationId: createTodo
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateUserDTO'
+              $ref: '#/components/schemas/CreateTodoDTO'
         required: true
       responses:
         '201':
           description: Created
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-
-  /auth/login:
-    post:
-      tags:
-        - Auth
-      summary: Login
-      operationId: login
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/LoginUserDTO'
-        required: true
-      responses:
-        '200':
-          description: Ok
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LoginUserVTO'
+                $ref: '#/components/schemas/TodoVTO'
         '400':
           $ref: '#/components/responses/BadRequest'
         '500':
           $ref: '#/components/responses/InternalServerError'
-
-  /profile:
     get:
       tags:
-        - Profile
-      summary: Get User Profile Details
-      operationId: getUserProfile
-      responses:
-        '200':
-          description: Ok
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UserProfileVTO'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-    put:
-      tags:
-        - Profile
-      summary: Update User Profile
-      operationId: updateUserProfile
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UserProfileDTO'
-      responses:
-        '204':
-          description: No Content
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-
-  /users:
-    get:
-      tags:
-        - User
-      summary: Retrieve All Users With Pagination
-      operationId: getUsersByIds
+        - Todo
+      summary: Search todo items by title
+      operationId: searchTodos
       parameters:
-        - name: ids
+        - name: title
           in: query
-          description: Comma-separated list of user IDs to retrieve
-          required: false
-          schema:
-            type: array
-            items:
-              type: integer
-              format: int64
-            example: [ 1, 2, 3 ]
-        - name: fullName
-          in: query
+          description: Title to search for
           required: false
           schema:
             type: string
-            example: "mohamed wagih"
+        - name: description
+          in: query
+          description: description to search for
+          required: false
+          schema:
+            type: string
+        - name: priority
+          in: query
+          description: priority to search for
+          required: false
+          schema:
+            type: string
+            enum: [ LOW, MEDIUM, HIGH ]
+        - name: status
+          in: query
+          description: status to search for
+          required: false
+          schema:
+            type: string
+            enum: [ PENDING, IN_PROGRESS, COMPLETED ]
         - name: pageNum
           in: query
           required: false
@@ -135,63 +87,91 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserResultSet'
+                $ref: '#/components/schemas/TodoResultSet'
         '400':
           $ref: '#/components/responses/BadRequest'
         '500':
           $ref: '#/components/responses/InternalServerError'
 
-  /users/{userId}/roles/{roleId}:
-    post:
+  /todos/{id}:
+    get:
       tags:
-        - Role
-      summary: Assign a role to a user
-      operationId: assignRoleToUser
+        - Todo
+      summary: Get a todo item by ID
+      operationId: getTodo
       parameters:
-        - name: userId
+        - name: id
           in: path
           required: true
-          description: The ID of the user to whom the role will be assigned.
+          description: The ID of the todo item
           schema:
             type: integer
             format: int64
-        - name: roleId
-          in: path
-          required: true
-          description: The ID of the role to be assigned to the user.
-          schema:
-            type: integer
       responses:
-        '201':
-          description: Created
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TodoVTO'
         '400':
           $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    put:
+      tags:
+        - Todo
+      summary: Update a todo item
+      operationId: updateTodo
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the todo item
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTodoDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TodoVTO'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/InternalServerError'
     delete:
       tags:
-        - Role
-      summary: Remove a role from a user
-      operationId: removeRoleFromUser
+        - Todo
+      summary: Delete a todo item
+      operationId: deleteTodo
       parameters:
-        - name: userId
+        - name: id
           in: path
           required: true
-          description: The ID of the user from whom the role will be removed.
+          description: The ID of the todo item
           schema:
             type: integer
             format: int64
-        - name: roleId
-          in: path
-          required: true
-          description: The ID of the role to be removed from the user.
-          schema:
-            type: integer
       responses:
         '204':
           description: No Content
         '400':
           $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/InternalServerError'
 
@@ -205,6 +185,12 @@ components:
             $ref: '#/components/schemas/ErrorVTO'
     InternalServerError:
       description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorVTO'
+    NotFound:
+      description: Not Found
       content:
         application/json:
           schema:
@@ -241,95 +227,81 @@ components:
         titleEn:
           type: string
 
-    LightUserVTO:
+    CreateTodoDTO:
+      type: object
+      required:
+        - title
+        - userId
+        - description
+        - priority
+        - status
+      properties:
+        title:
+          type: string
+          maxLength: 100
+          minLength: 1
+        userId:
+          type: integer
+          format: int64
+        description:
+          type: string
+        priority:
+          type: string
+          enum: [ LOW, MEDIUM, HIGH ]
+        status:
+          type: string
+          enum: [ PENDING, IN_PROGRESS, COMPLETED ]
+
+    UpdateTodoDTO:
+      type: object
+      properties:
+        title:
+          type: string
+          maxLength: 100
+          minLength: 1
+        description:
+          type: string
+        priority:
+          type: string
+          enum: [ LOW, MEDIUM, HIGH ]
+        status:
+          type: string
+          enum: [ PENDING, IN_PROGRESS, COMPLETED ]
+
+    TodoVTO:
       type: object
       properties:
         id:
           type: integer
           format: int64
-        fullName:
+        title:
           type: string
-
-    LoginUserVTO:
-      type: object
-      properties:
-        token:
-          type: string
-
-    LoginUserDTO:
-      type: object
-      required:
-        - username
-        - password
-      properties:
-        username:
-          type: string
-        password:
-          type: string
-
-    CreateUserDTO:
-      type: object
-      required:
-        - firstName
-        - lastName
-        - email
-        - password
-        - mobileNumber
-      properties:
-        firstName:
-          type: string
-          maxLength: 25
-          minLength: 2
-        lastName:
-          type: string
-          maxLength: 25
-          minLength: 2
-        mobileNumber:
-          type: string
-        password:
-          type: string
-        email:
-          type: string
-          format: email
-
-
-    UserProfileDTO:
-      type: object
-      required:
-        - firstName
-        - lastName
-        - mobileNumber
-      properties:
-        firstName:
-          type: string
-          maxLength: 25
-          minLength: 2
-        lastName:
-          type: string
-          maxLength: 25
-          minLength: 2
-        mobileNumber:
-          type: string
-
-    UserProfileVTO:
-      type: object
-      properties:
-        id:
+        userId:
           type: integer
           format: int64
-        firstName:
+        description:
           type: string
-        lastName:
+        createdAt:
           type: string
-        mobileNumber:
+          format: date-time
+        priority:
           type: string
-        email:
+          enum: [ LOW, MEDIUM, HIGH ]
+        status:
           type: string
+          enum: [ PENDING, IN_PROGRESS, COMPLETED ]
 
-    UserResultSet:
+    TodoResultSet:
       type: object
       properties:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/LightUserVTO'
+            $ref: '#/components/schemas/TodoVTO'
+        pageNum:
+          type: integer
+        pageSize:
+          type: integer
+        total:
+          type: integer
+          format: int64
