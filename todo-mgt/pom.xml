@@ -50,7 +50,6 @@
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -171,6 +170,12 @@
                             <skipOverwrite>true</skipOverwrite>
                             <!-- Configuration options for the spring generator -->
                             <configOptions>
+                                <additionalModelTypeAnnotations>
+                                    @lombok.Builder
+                                    @lombok.AllArgsConstructor
+                                    @lombok.NoArgsConstructor
+                                    @lombok.Data
+                                </additionalModelTypeAnnotations>
                                 <interfaceOnly>true</interfaceOnly>
                                 <useTags>true</useTags>
                                 <useSpringBoot3>true</useSpringBoot3>

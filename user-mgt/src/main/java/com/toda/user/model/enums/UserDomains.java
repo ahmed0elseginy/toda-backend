@@ -6,6 +6,9 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public enum UserDomains implements Domains<UserDomains> {
     USER(201, ""), ROLE(202, ""),
+    SECURITY(101,""),
+    LOGIN(102,""),
+    JWT_TOKEN(103,"");
     ;
 
     private final Integer id;

@@ -2,14 +2,11 @@ package com.toda.user.repository.entity;
 
 import com.toda.user.repository.entity.pk.UserRoleId;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import java.util.Date;
 
+import java.util.Date;
 
 @Data
 @Builder
@@ -21,6 +18,7 @@ import java.util.Date;
 @Table(name = "user_role")
 public class UserRole {
     @Id
+    @Basic
     @Column(name = "user_id")
     private Long userId;
 
@@ -33,6 +31,5 @@ public class UserRole {
     @Column(name = "created_on")
     private Date createdOn;
 
+
 }
-
-

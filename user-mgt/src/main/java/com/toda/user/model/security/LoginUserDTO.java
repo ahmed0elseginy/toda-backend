@@ -1,4 +1,4 @@
-package zag.library.filter;
+package com.toda.user.model.security;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class PaginationInfo {
-    private Integer pageOffset;
-    private Integer pageSize;
+public class LoginUserDTO {
+
+    private String username;
+    private String password;
+
 }

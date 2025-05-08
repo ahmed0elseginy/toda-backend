@@ -3,7 +3,6 @@ package com.toda.user.repository.entity.pk;
 import com.toda.user.repository.entity.Role;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.io.Serializable;
 
 @Data

@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.OK;
 
 @RestController
 @AllArgsConstructor
@@ -18,7 +19,8 @@ public class AuthController implements AuthApi {
 
     @Override
     public ResponseEntity<LoginUserVTO> login(LoginUserDTO loginUserDTO) {
-        return AuthApi.super.login(loginUserDTO);
+        LoginUserVTO res = authService.login(loginUserDTO);
+        return ResponseEntity.ok(res);
     }
 
     @Override

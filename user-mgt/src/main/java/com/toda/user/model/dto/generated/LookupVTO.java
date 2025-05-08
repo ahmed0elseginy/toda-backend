@@ -17,8 +17,12 @@ import jakarta.annotation.Generated;
 /**
  * LookupVTO
  */
+@lombok.Builder
+@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor
+@lombok.Data
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-02T05:18:29.793393200+03:00[Africa/Cairo]", comments = "Generator version: 7.10.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-08T03:00:49.308515600+03:00[Africa/Cairo]", comments = "Generator version: 7.10.0")
 public class LookupVTO implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -27,81 +31,5 @@ public class LookupVTO implements Serializable {
 
   private String titleEn;
 
-  public LookupVTO id(Integer id) {
-    this.id = id;
-    return this;
-  }
-
-  /**
-   * Get id
-   * @return id
-   */
-  
-  @JsonProperty("id")
-  public Integer getId() {
-    return id;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
-  }
-
-  public LookupVTO titleEn(String titleEn) {
-    this.titleEn = titleEn;
-    return this;
-  }
-
-  /**
-   * Get titleEn
-   * @return titleEn
-   */
-  
-  @JsonProperty("titleEn")
-  public String getTitleEn() {
-    return titleEn;
-  }
-
-  public void setTitleEn(String titleEn) {
-    this.titleEn = titleEn;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    LookupVTO lookupVTO = (LookupVTO) o;
-    return Objects.equals(this.id, lookupVTO.id) &&
-        Objects.equals(this.titleEn, lookupVTO.titleEn);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, titleEn);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class LookupVTO {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    titleEn: ").append(toIndentedString(titleEn)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
 }
 

@@ -46,11 +46,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.liquibase</groupId>
-            <artifactId>liquibase-core</artifactId>
-        </dependency>
-
+<!--        <dependency>-->
+<!--            <groupId>org.liquibase</groupId>-->
+<!--            <artifactId>liquibase-core</artifactId>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -82,10 +81,35 @@
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <!--JWT dependencies-->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>0.12.5</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>0.12.5</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>0.12.5</version>
+            <scope>runtime</scope>
+        </dependency>
+        <!-- MapStruct -->
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
             <version>1.6.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>1.6.3</version>
+            <scope>provided</scope>
         </dependency>
         <!-- Swagger and OpenAPI -->
         <dependency>
@@ -113,7 +137,6 @@
             <version>3.0.0</version>
         </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
@@ -172,6 +195,12 @@
                             <skipOverwrite>true</skipOverwrite>
                             <!-- Configuration options for the spring generator -->
                             <configOptions>
+                                <additionalModelTypeAnnotations>
+                                    @lombok.Builder
+                                    @lombok.AllArgsConstructor
+                                    @lombok.NoArgsConstructor
+                                    @lombok.Data
+                                </additionalModelTypeAnnotations>
                                 <interfaceOnly>true</interfaceOnly>
                                 <useTags>true</useTags>
                                 <useSpringBoot3>true</useSpringBoot3>
@@ -185,6 +214,21 @@
                     </execution>
                 </executions>
             </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.liquibase</groupId>-->
+<!--                <artifactId>liquibase-maven-plugin</artifactId>-->
+<!--                <version>4.29.2</version>-->
+<!--                <configuration>-->
+<!--                    &lt;!&ndash; ChangeLog file location &ndash;&gt;-->
+<!--                    <changeLogFile>src/main/resources/db/changelog/db.changelog-master.xml</changeLogFile>-->
+
+<!--                    &lt;!&ndash; Database connection information &ndash;&gt;-->
+<!--                    <url>jdbc:mysql://localhost:3306/toda_user_mgt</url>-->
+<!--                    <username>toda</username>-->
+<!--                    <password>toda@123</password>-->
+<!--                    <driver>com.mysql.cj.jdbc.Driver</driver>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 </project>
