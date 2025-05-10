@@ -22,7 +22,7 @@ import java.util.Map;
 import java.util.Optional;
 import jakarta.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-08T03:00:49.308515600+03:00[Africa/Cairo]", comments = "Generator version: 7.10.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T00:48:20.900242300+03:00[Africa/Cairo]", comments = "Generator version: 7.10.0")
 @Validated
 public interface UserApi {
 

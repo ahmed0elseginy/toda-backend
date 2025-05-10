@@ -1,6 +1,8 @@
 package com.toda.todo.repository.entity;
 
 
+import com.toda.todo.model.enums.Priority;
+import com.toda.todo.model.enums.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,23 +14,25 @@ import java.util.Date;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "Task")
-public class Task {
+@Table(name = "Task_details")
+public class TaskDetails {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "title")
-    private String title;
-
-    @Column(name = "created_by_id", updatable = false)
-    private Long createdById;
-
     @Column(name = "description")
     private String description;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private TaskDetails details;
+    @Column(name = "created_at", nullable = false)
+    private Date createdAt;
+
+    @Column(name = "priority")
+    private Priority priority;
+
+    @Column(name = "status")
+    private Status status;
+
+
 }

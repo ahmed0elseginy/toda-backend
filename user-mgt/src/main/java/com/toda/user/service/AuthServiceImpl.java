@@ -1,11 +1,9 @@
 package com.toda.user.service;
 
 import com.toda.user.error.exception.BusinessException;
-import com.toda.user.error.interfaces.Errors;
 import com.toda.user.model.dto.generated.CreateUserDTO;
 import com.toda.user.model.dto.generated.LoginUserDTO;
 import com.toda.user.model.dto.generated.LoginUserVTO;
-import com.toda.user.model.security.UserPrincipal;
 import com.toda.user.repository.entity.Role;
 import com.toda.user.repository.entity.User;
 import com.toda.user.repository.entity.UserRole;
@@ -16,19 +14,12 @@ import com.toda.user.service.security.JWTService;
 import com.toda.user.service.security.SecurityService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 import static com.toda.user.model.enums.UserErrors.*;
 import static com.toda.user.model.enums.UserRoles.MEMBER;
