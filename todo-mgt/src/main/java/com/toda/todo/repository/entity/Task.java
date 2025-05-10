@@ -23,12 +23,12 @@ public class Task {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "description")
-    private String description;
-
     @Column(name = "created_by_id", updatable = false)
     private Long createdById;
 
-    private Date createdAt;
+    @Column(name = "description")
+    private String description;
 
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private TaskDetails details;
 }

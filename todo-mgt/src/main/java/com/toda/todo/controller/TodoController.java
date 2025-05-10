@@ -5,30 +5,34 @@ import com.toda.todo.model.dto.generated.CreateTodoDTO;
 import com.toda.todo.model.dto.generated.TodoResultSet;
 import com.toda.todo.model.dto.generated.TodoVTO;
 import com.toda.todo.model.dto.generated.UpdateTodoDTO;
+import com.toda.todo.service.secuirty.TaskService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.context.request.NativeWebRequest;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Optional;
 
+@RestController
+@AllArgsConstructor
 public class TodoController implements TodoApi {
-    @Override
-    public Optional<NativeWebRequest> getRequest() {
-        return TodoApi.super.getRequest();
-    }
+
+    private final TaskService taskService;
 
     @Override
-    public ResponseEntity<TodoVTO> createTodo(CreateTodoDTO createTodoDTO) {
-        return TodoApi.super.createTodo(createTodoDTO);
+    public ResponseEntity<Long> createTodo(CreateTodoDTO createTodoDTO) {
+        Long task = taskService.createTask(createTodoDTO);
+        return ResponseEntity.ok(task);
     }
 
     @Override
     public ResponseEntity<Void> deleteTodo(Long id) {
-        return TodoApi.super.deleteTodo(id);
+        taskService.deleteTask(id);
+        return ResponseEntity.noContent().build();
     }
 
     @Override
     public ResponseEntity<TodoVTO> getTodo(Long id) {
-        return TodoApi.super.getTodo(id);
+        TodoVTO todo = taskService.getTaskById(id);
+        return ResponseEntity.ok(todo);
     }
 
     @Override
@@ -38,6 +42,7 @@ public class TodoController implements TodoApi {
 
     @Override
     public ResponseEntity<TodoVTO> updateTodo(Long id, UpdateTodoDTO updateTodoDTO) {
-        return TodoApi.super.updateTodo(id, updateTodoDTO);
+        TodoVTO vto = taskService.updateTask(id, updateTodoDTO);
+        return ResponseEntity.ok(vto);
     }
 }

@@ -25,7 +25,7 @@ import java.util.Map;
 import java.util.Optional;
 import jakarta.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-03T04:48:05.260449800+03:00[Africa/Cairo]", comments = "Generator version: 7.10.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T11:23:03.852535400+03:00[Africa/Cairo]", comments = "Generator version: 7.10.0")
 @Validated
 public interface TodoApi {
 
@@ -48,13 +48,13 @@ public interface TodoApi {
         consumes = { "application/json" }
     )
     
-    default ResponseEntity<TodoVTO> createTodo(
+    default ResponseEntity<Long> createTodo(
          @Valid @RequestBody CreateTodoDTO createTodoDTO
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"createdAt\" : \"2000-01-23T04:56:07.000+00:00\", \"description\" : \"description\", \"id\" : 0, \"title\" : \"title\", \"priority\" : \"LOW\", \"userId\" : 6, \"status\" : \"PENDING\" }";
+                    String exampleString = "123";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

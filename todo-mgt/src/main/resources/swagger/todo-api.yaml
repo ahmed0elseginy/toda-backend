@@ -32,7 +32,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TodoVTO'
+                type: integer
+                format: int64
+                example: 123
         '400':
           $ref: '#/components/responses/BadRequest'
         '500':

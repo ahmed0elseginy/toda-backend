@@ -22,7 +22,7 @@ import jakarta.annotation.Generated;
 @lombok.NoArgsConstructor
 @lombok.Data
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-08T03:00:49.308515600+03:00[Africa/Cairo]", comments = "Generator version: 7.10.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T00:48:20.900242300+03:00[Africa/Cairo]", comments = "Generator version: 7.10.0")
 public class CreateUserDTO implements Serializable {
 
   private static final long serialVersionUID = 1L;
