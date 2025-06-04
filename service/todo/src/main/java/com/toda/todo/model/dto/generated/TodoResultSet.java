@@ -13,6 +13,8 @@ import java.io.Serializable;
 import java.time.OffsetDateTime;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
+import org.hibernate.validator.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
@@ -21,12 +23,11 @@ import jakarta.annotation.Generated;
 /**
  * TodoResultSet
  */
-@lombok.Data
 @lombok.Builder
 @lombok.AllArgsConstructor
 @lombok.NoArgsConstructor
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-11T11:39:50.362109300+03:00[Africa/Cairo]", comments = "Generator version: 7.10.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.10.0")
 public class TodoResultSet implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -40,5 +41,135 @@ public class TodoResultSet implements Serializable {
 
   private Long total;
 
+  public TodoResultSet data(List<@Valid TodoVTO> data) {
+    this.data = data;
+    return this;
+  }
+
+  public TodoResultSet addDataItem(TodoVTO dataItem) {
+    if (this.data == null) {
+      this.data = new ArrayList<>();
+    }
+    this.data.add(dataItem);
+    return this;
+  }
+
+  /**
+   * Get data
+   * @return data
+   */
+  @Valid 
+  @Schema(name = "data", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("data")
+  public List<@Valid TodoVTO> getData() {
+    return data;
+  }
+
+  public void setData(List<@Valid TodoVTO> data) {
+    this.data = data;
+  }
+
+  public TodoResultSet pageNum(Integer pageNum) {
+    this.pageNum = pageNum;
+    return this;
+  }
+
+  /**
+   * Get pageNum
+   * @return pageNum
+   */
+  
+  @Schema(name = "pageNum", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("pageNum")
+  public Integer getPageNum() {
+    return pageNum;
+  }
+
+  public void setPageNum(Integer pageNum) {
+    this.pageNum = pageNum;
+  }
+
+  public TodoResultSet pageSize(Integer pageSize) {
+    this.pageSize = pageSize;
+    return this;
+  }
+
+  /**
+   * Get pageSize
+   * @return pageSize
+   */
+  
+  @Schema(name = "pageSize", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("pageSize")
+  public Integer getPageSize() {
+    return pageSize;
+  }
+
+  public void setPageSize(Integer pageSize) {
+    this.pageSize = pageSize;
+  }
+
+  public TodoResultSet total(Long total) {
+    this.total = total;
+    return this;
+  }
+
+  /**
+   * Get total
+   * @return total
+   */
+  
+  @Schema(name = "total", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("total")
+  public Long getTotal() {
+    return total;
+  }
+
+  public void setTotal(Long total) {
+    this.total = total;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    TodoResultSet todoResultSet = (TodoResultSet) o;
+    return Objects.equals(this.data, todoResultSet.data) &&
+        Objects.equals(this.pageNum, todoResultSet.pageNum) &&
+        Objects.equals(this.pageSize, todoResultSet.pageSize) &&
+        Objects.equals(this.total, todoResultSet.total);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(data, pageNum, pageSize, total);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class TodoResultSet {\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    pageNum: ").append(toIndentedString(pageNum)).append("\n");
+    sb.append("    pageSize: ").append(toIndentedString(pageSize)).append("\n");
+    sb.append("    total: ").append(toIndentedString(total)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
 }
 

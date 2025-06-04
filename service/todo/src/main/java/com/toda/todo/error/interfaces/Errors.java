@@ -1,8 +1,6 @@
 package com.toda.todo.error.interfaces;
 
 
-import com.toda.todo.common.interfaces.Domains;
-
 public interface Errors<T extends Enum<T> & Errors<T, D>, D extends Enum<D> & Domains<D>> {
     Domains<D> domain();
 

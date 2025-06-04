@@ -137,9 +137,7 @@
 			<artifactId>springfox-boot-starter</artifactId>
 			<version>3.0.0</version>
 		</dependency>
-
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -182,36 +180,48 @@
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<!-- Input OpenAPI specification -->
 							<inputSpec>${project.basedir}/src/main/resources/swagger/user-api.yaml</inputSpec>
-							<!-- Generator type -->
 							<generatorName>spring</generatorName>
-							<!-- Safe output directory for generated sources -->
 							<output>${project.basedir}</output>
-							<!-- Package configurations -->
 							<apiPackage>com.toda.user.controller.generated</apiPackage>
 							<modelPackage>com.toda.user.model.dto.generated</modelPackage>
-							<invokerPackage>com.toda.user.invoker.generated</invokerPackage>
-							<!-- Add generated sources to compilation path -->
-							<addCompileSourceRoot>true</addCompileSourceRoot>
-							<!-- Prevent overwriting existing files -->
-							<skipOverwrite>true</skipOverwrite>
-							<!-- Configuration options for the spring generator -->
+							<apiNameSuffix>Controller</apiNameSuffix>
+							<skipOperationExample>true</skipOperationExample>
+							<generateSupportingFiles>false</generateSupportingFiles>
+							<library>spring-boot</library>
+							<skipValidateSpec>false</skipValidateSpec>
+							<typeMappings>
+								<typeMapping>OffsetDateTime=Date</typeMapping>
+								<typeMapping>LocalDate=Date</typeMapping>
+							</typeMappings>
+							<importMappings>
+								<importMapping>LocalDate=java.util.Date</importMapping>
+							</importMappings>
 							<configOptions>
+								<hideGenerationTimestamp>true</hideGenerationTimestamp>
+								<documentationProvider>springdoc</documentationProvider>
+								<useSpringBoot3>true</useSpringBoot3>
+								<useSpringController>true</useSpringController>
+								<requestMappingMode>controller</requestMappingMode>
+								<performBeanValidation>true</performBeanValidation>
+								<library>spring-boot</library>
+								<!-- <snapshotVersion>true</snapshotVersion>-->
+								<reactive>false</reactive>
+								<delegatePattern>true</delegatePattern>
+								<interfaceOnly>true</interfaceOnly>
+								<dateLibrary>java8</dateLibrary>
+								<java8>true</java8>
+								<skipDefaultInterface>true</skipDefaultInterface>
+								<!--                                <sourceFolder>/</sourceFolder>-->
+								<!--suppress UnresolvedMavenProperty -->
 								<additionalModelTypeAnnotations>
 									@lombok.Builder
 									@lombok.AllArgsConstructor
 									@lombok.NoArgsConstructor
-									@lombok.Data
 								</additionalModelTypeAnnotations>
-								<interfaceOnly>true</interfaceOnly>
 								<useTags>true</useTags>
-								<useSpringBoot3>true</useSpringBoot3>
-								<useOptional>false</useOptional>
-								<dateLibrary>java8</dateLibrary>
+								<generatedConstructorWithRequiredArgs>false</generatedConstructorWithRequiredArgs>
 								<serializableModel>true</serializableModel>
-								<skipDefaultInterface>false</skipDefaultInterface>
-								<documentationProvider>none</documentationProvider>
 							</configOptions>
 						</configuration>
 					</execution>

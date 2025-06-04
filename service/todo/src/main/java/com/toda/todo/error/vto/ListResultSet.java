@@ -1,4 +1,4 @@
-package com.toda.todo.common.model.data;
+package com.toda.todo.error.vto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,14 +1,15 @@
 package com.toda.todo.model.enums;
 
-import com.toda.todo.common.interfaces.Domains;
+import com.toda.todo.error.interfaces.Domains;
 import com.toda.todo.error.interfaces.Errors;
-import lombok.AllArgsConstructor;
 
 import static com.toda.todo.model.enums.TaskDomains.TASK;
 
 public enum TaskErrors implements Errors<TaskErrors, TaskDomains> {
-    Task_NOT_FOUND(TASK, "0001", "Task not found");
-
+    Task_NOT_FOUND(TASK, "0001", "Task not found"),
+    INVALID_REQUEST(TASK, "0002", "Invalid request to check user"),
+    UNEXPECTED_ERROR(TASK, "0003", "Unexpected error occurred while checking user existence"),
+    USER_NOT_FOUND(TASK, "0004", "User not found in the system");
     private final Domains<TaskDomains> domain;
     private final String code;
     private final String defaultMessage;

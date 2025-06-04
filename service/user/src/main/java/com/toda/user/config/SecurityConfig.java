@@ -15,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
 @Configuration
 @AllArgsConstructor
 public class SecurityConfig {
@@ -29,18 +30,21 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
-        return http.csrf(csrf -> csrf.disable()).
-                authorizeHttpRequests(request -> request.requestMatchers("/auth/**").permitAll()).
-                authorizeHttpRequests(request -> request.anyRequest().authenticated()).
-                httpBasic(Customizer.withDefaults()).    //Basic Authentication(Uername,Password)
-                        sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)). //To Not Store Sessions On The Server Because We Not Depend On Session
-                        addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class).      //To Check Vaildation Of Token
-                        build();
+        return http
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(request -> request
+                        .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
+                        .requestMatchers("/users/check/**").permitAll()
+                        .requestMatchers("/users/**").hasRole("ADMIN")
+                        .anyRequest().authenticated()
+                )
+                .httpBasic(Customizer.withDefaults())
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+                .build();
     }
 
-
-    //Database Connection Part
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
@@ -49,11 +53,9 @@ public class SecurityConfig {
         return provider;
     }
 
-    //Which In It Call Authentication Provider To Check If The User In Database
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
-
 
 }

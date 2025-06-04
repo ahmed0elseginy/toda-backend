@@ -5,15 +5,15 @@ import com.toda.todo.model.dto.generated.*;
 import java.util.List;
 
 public interface TodoService {
-    Long createTask(CreateTodoDTO createTodoDTO);
+    Long createTodo(CreateTodoDTO createTodoDTO);
 
-    TodoVTO updateTask(Long taskId, UpdateTodoDTO updateTodoDTO);
+    TodoVTO updateTodo(Long todoId, UpdateTodoDTO updateTodoDTO);
 
-    void deleteTask(Long todoId);
+    void deleteTodo(Long todoId);
 
-    TodoVTO getTaskById(Long todoId);
+    TodoVTO getTodoById(Long todoId);
 
-    List<TodoVTO> getAllTasks();
+    List<TodoVTO> getAllTodo();
 
     TodoResultSet getBySearch(String title, String description, Priority priority, Status status, Integer pageNum, Integer pageSize);
 }

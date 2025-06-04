@@ -34,10 +34,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-security</artifactId>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
@@ -79,30 +79,30 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.security</groupId>-->
-<!--            <artifactId>spring-security-test</artifactId>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
-<!--        &lt;!&ndash;JWT dependencies&ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>io.jsonwebtoken</groupId>-->
-<!--            <artifactId>jjwt-api</artifactId>-->
-<!--            <version>0.12.5</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>io.jsonwebtoken</groupId>-->
-<!--            <artifactId>jjwt-impl</artifactId>-->
-<!--            <version>0.12.5</version>-->
-<!--            <scope>runtime</scope>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>io.jsonwebtoken</groupId>-->
-<!--            <artifactId>jjwt-jackson</artifactId>-->
-<!--            <version>0.12.5</version>-->
-<!--            <scope>runtime</scope>-->
-<!--        </dependency>-->
-        <!-- MapStruct -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!--JWT dependencies-->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>0.12.5</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>0.12.5</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>0.12.5</version>
+            <scope>runtime</scope>
+        </dependency>
+        <!--     MapStruct -->
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
@@ -168,60 +168,60 @@
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
-<!--            <plugin>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
-<!--                <configuration>-->
-<!--                    <excludes>-->
-<!--                        <exclude>-->
-<!--                            <groupId>org.projectlombok</groupId>-->
-<!--                            <artifactId>lombok</artifactId>-->
-<!--                        </exclude>-->
-<!--                    </excludes>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
             <plugin>
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
                 <version>7.10.0</version>
                 <executions>
                     <execution>
-                        <id>generate-user-api</id>
+                        <id>generate-todo-api</id>
                         <phase>generate-sources</phase>
                         <goals>
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <!-- Input OpenAPI specification -->
                             <inputSpec>${project.basedir}/src/main/resources/swagger/todo-api.yaml</inputSpec>
-                            <!-- Generator type -->
                             <generatorName>spring</generatorName>
-                            <!-- Safe output directory for generated sources -->
                             <output>${project.basedir}</output>
-                            <!-- Package configurations -->
                             <apiPackage>com.toda.todo.controller.generated</apiPackage>
                             <modelPackage>com.toda.todo.model.dto.generated</modelPackage>
-                            <invokerPackage>com.toda.todo.invoker.generated</invokerPackage>
-                            <!-- Add generated sources to compilation path -->
-                            <addCompileSourceRoot>true</addCompileSourceRoot>
-                            <!-- Prevent overwriting existing files -->
-                            <skipOverwrite>true</skipOverwrite>
-                            <!-- Configuration options for the spring generator -->
+                            <apiNameSuffix>Controller</apiNameSuffix>
+                            <skipOperationExample>true</skipOperationExample>
+                            <generateSupportingFiles>false</generateSupportingFiles>
+                            <library>spring-boot</library>
+                            <skipValidateSpec>false</skipValidateSpec>
+                            <typeMappings>
+                                <typeMapping>OffsetDateTime=Date</typeMapping>
+                                <typeMapping>LocalDate=Date</typeMapping>
+                            </typeMappings>
+                            <importMappings>
+                                <importMapping>LocalDate=java.util.Date</importMapping>
+                            </importMappings>
                             <configOptions>
+                                <hideGenerationTimestamp>true</hideGenerationTimestamp>
+                                <documentationProvider>springdoc</documentationProvider>
+                                <useSpringBoot3>true</useSpringBoot3>
+                                <useSpringController>true</useSpringController>
+                                <requestMappingMode>controller</requestMappingMode>
+                                <performBeanValidation>true</performBeanValidation>
+                                <library>spring-boot</library>
+                                <!-- <snapshotVersion>true</snapshotVersion>-->
+                                <reactive>false</reactive>
+                                <delegatePattern>true</delegatePattern>
+                                <interfaceOnly>true</interfaceOnly>
+                                <dateLibrary>java8</dateLibrary>
+                                <java8>true</java8>
+                                <skipDefaultInterface>true</skipDefaultInterface>
+                                <!--                                <sourceFolder>/</sourceFolder>-->
+                                <!--suppress UnresolvedMavenProperty -->
                                 <additionalModelTypeAnnotations>
-                                    @lombok.Data
                                     @lombok.Builder
                                     @lombok.AllArgsConstructor
                                     @lombok.NoArgsConstructor
                                 </additionalModelTypeAnnotations>
-                                <interfaceOnly>true</interfaceOnly>
                                 <useTags>true</useTags>
-                                <useSpringBoot3>true</useSpringBoot3>
-                                <useOptional>false</useOptional>
-                                <dateLibrary>java8</dateLibrary>
+                                <generatedConstructorWithRequiredArgs>false</generatedConstructorWithRequiredArgs>
                                 <serializableModel>true</serializableModel>
-                                <skipDefaultInterface>false</skipDefaultInterface>
-                                <documentationProvider>none</documentationProvider>
                             </configOptions>
                         </configuration>
                     </execution>

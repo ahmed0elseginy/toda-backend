@@ -1,6 +1,6 @@
 package com.toda.todo.repository.entity;
 
-
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.toda.todo.model.dto.generated.Priority;
 import com.toda.todo.model.dto.generated.Status;
 import jakarta.persistence.*;
@@ -15,6 +15,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "Task_details")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class TodoDetails {
 
     @Id
@@ -25,7 +26,7 @@ public class TodoDetails {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "created_at")
     private Date createdAt;
 
     @Enumerated(EnumType.STRING)
@@ -36,43 +37,4 @@ public class TodoDetails {
     @Column(name = "status")
     private Status status;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Priority getPriority() {
-        return priority;
-    }
-
-    public void setPriority(Priority priority) {
-        this.priority = priority;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
 }

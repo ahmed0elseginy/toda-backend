@@ -1,4 +1,4 @@
-package com.toda.todo.common.interfaces;
+package com.toda.todo.error.interfaces;
 
 public interface Domains<D extends Enum<D> & Domains<D>> {
     Integer id();
