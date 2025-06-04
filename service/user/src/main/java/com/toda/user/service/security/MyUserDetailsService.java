@@ -14,16 +14,18 @@ import static com.toda.user.model.enums.UserErrors.USER_NOT_FOUND;
 
 @Service
 @AllArgsConstructor
-public class MyUserDetailsServie implements UserDetailsService {
+public class MyUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepo;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-
         User user = userRepo.findByEmail(email);
-        if (user != null)
+
+        // Throw exception if user NOT found (user is null)
+        if (user == null) {
             throw new BusinessException(USER_NOT_FOUND);
+        }
 
         return new UserPrincipal(UserDTO
                 .builder()

@@ -12,6 +12,7 @@ servers:
 
 tags:
   - name: Todo
+    description: "Todo operations"
 
 paths:
   /todos:
@@ -197,7 +198,6 @@ components:
       type: object
       required:
         - title
-        - userId
         - description
         - priority
         - status
@@ -206,9 +206,6 @@ components:
           type: string
           maxLength: 100
           minLength: 1
-        userId:
-          type: integer
-          format: int64
         description:
           type: string
         priority:
@@ -238,7 +235,7 @@ components:
           format: int64
         title:
           type: string
-        userId:
+        createdById:
           type: integer
           format: int64
         description:

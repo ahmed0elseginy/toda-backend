@@ -30,43 +30,4 @@ public class Todo {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private TodoDetails details;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public Long getCreatedById() {
-        return createdById;
-    }
-
-    public void setCreatedById(Long createdById) {
-        this.createdById = createdById;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public TodoDetails getDetails() {
-        return details;
-    }
-
-    public void setDetails(TodoDetails details) {
-        this.details = details;
-    }
 }

@@ -1,13 +1,13 @@
 package com.toda.todo.model.enums;
 
-import com.toda.todo.common.interfaces.Domains;
+import com.toda.todo.error.interfaces.Domains;
 
 public enum TaskDomains implements Domains<TaskDomains> {
     TASK(201, ""),
     USER(201, ""),
+    LOGIN(102,""),
     ROLE(202, ""),
     SECURITY(101,""),
-    LOGIN(102,""),
     JWT_TOKEN(103,"");
     ;
 
