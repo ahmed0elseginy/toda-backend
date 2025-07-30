@@ -76,16 +76,23 @@
     </changeSet>
     <changeSet id="1749014253180-1" author="Ahmed -El-Seginy">
         <insert tableName="role">
-        <column name="id" valueNumeric="1"/>
-        <column name="title_en" value="Admin"/>
-        <column name="created_on" valueDate="NOW()"/>
+            <column name="id" valueNumeric="1"/>
+            <column name="title_en" value="Admin"/>
+            <column name="created_on" valueDate="NOW()"/>
         </insert>
     </changeSet>
     <changeSet id="1749014253180-2" author="Ahmed -El-Seginy">
         <insert tableName="role">
-        <column name="id" valueNumeric="2"/>
-        <column name="title_en" value="Member"/>
-        <column name="created_on" valueDate="NOW()"/>
+            <column name="id" valueNumeric="2"/>
+            <column name="title_en" value="Member"/>
+            <column name="created_on" valueDate="NOW()"/>
+        </insert>
+    </changeSet>
+    <changeSet id="1749014253180-3" author="Ahmed -El-Seginy">
+        <insert tableName="role">
+            <column name="id" valueNumeric="2"/>
+            <column name="title_en" value="Super Admin"/>
+            <column name="created_on" valueDate="NOW()"/>
         </insert>
     </changeSet>
 </databaseChangeLog>
