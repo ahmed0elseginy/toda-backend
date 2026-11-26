@@ -69,3 +69,7 @@ Thumbs.db
 # Git
 *.my-cred
 config.bat
+# Secrets (restored after the malware removed them)
+.env
+.env.*
+!.env.example
