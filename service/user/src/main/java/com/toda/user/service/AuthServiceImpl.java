@@ -79,6 +79,7 @@ public class AuthServiceImpl implements AuthService {
             if (!isPasswordMatch)
                 throw new BusinessException(INVALID_CREDENTIALS);
         }
+
         List<UserRole> roles = userRoleRepository.findAllByUserId(user.getId());
         String token = jwtService.generateToken(user, roles);
         return LoginUserVTO.builder()
